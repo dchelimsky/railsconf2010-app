@@ -28,3 +28,4 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "rspec-rails",    "2.0.0.beta.11"
 gem "cucumber-rails", "0.3.2"
 gem "capybara",       "0.3.8"
+gem "launchy"
