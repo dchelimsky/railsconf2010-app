@@ -2,13 +2,6 @@ require 'spec_helper'
 
 describe CardsController do
   describe "GET index" do
-    it "assigns all cards to @cards" do
-      card = stub_model(Card)
-      Card.stub(:all) { [card] } 
-      get :index
-      assigns(:cards).should eq([card])
-    end
-    
     it "assigns all swimlanes to @swimlanes" do
       swimlane = stub_model(Swimlane)
       Swimlane.stub(:all) { [swimlane] } 
@@ -31,6 +24,7 @@ describe CardsController do
     end
 
     it "redirects to the index page" do
+      Card.stub(:create)
       post :create
       response.should redirect_to(cards_path)
     end

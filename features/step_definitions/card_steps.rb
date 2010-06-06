@@ -1,5 +1,8 @@
 Given /^the following cards:$/ do |cards|
-  Card.create! cards.hashes
+  cards.hashes.each do |card|
+    swimlane = Swimlane.find_or_create_by_name(card.delete('swimlane'))
+    swimlane.cards.create!(card)
+  end
 end
 
 When /^I edit the "([^"]*)" card$/ do |title|

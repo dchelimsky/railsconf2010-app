@@ -1,6 +1,6 @@
 <% @swimlanes.each do |swimlane| -%>
   <ul id="swimlane-<%= swimlane.id %>" class="cards">
-    <% @cards.each do |card| -%>
+    <% swimlane.cards.each do |card| -%>
       <li><%= card.title %></li>
     <% end -%>
   </ul>
