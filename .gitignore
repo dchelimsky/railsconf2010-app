@@ -1,6 +1,7 @@
 .bundle
 db/*.sqlite3
 log/*.log
+capybara-*.html
 tmp/**/*
 Gemfile.lock
 doc

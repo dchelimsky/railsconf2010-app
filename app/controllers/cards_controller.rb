@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   def index
+    @swimlanes = Swimlane.all
     @cards = Card.all
   end
   

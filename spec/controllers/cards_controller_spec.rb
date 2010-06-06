@@ -8,6 +8,13 @@ describe CardsController do
       get :index
       assigns(:cards).should eq([card])
     end
+    
+    it "assigns all swimlanes to @swimlanes" do
+      swimlane = stub_model(Swimlane)
+      Swimlane.stub(:all) { [swimlane] } 
+      get :index
+      assigns(:swimlanes).should eq([swimlane])
+    end
   end
   
   describe "GET new" do

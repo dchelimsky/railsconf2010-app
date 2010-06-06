@@ -2,12 +2,15 @@ Feature: Manage cards
   In order to document a new user story
   As a team member
   I want to create a story card
+
+  Background:
+    Given a "backlog" swimlane
   
   Scenario: Create card
     Given I am on the new card page
     And I fill in "Title" with "Card 1"
     And I press "Create"
-    Then I should see the following cards:
+    Then I should see the following cards in the "backlog" swimlane:
       | title  |
       | Card 1 |
       
