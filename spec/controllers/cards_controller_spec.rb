@@ -28,4 +28,38 @@ describe CardsController do
       response.should redirect_to(cards_path)
     end
   end
+  
+  describe "GET show" do
+    it "assigns requested Card to @card" do
+      card = stub_model(Card)
+      Card.stub(:find).with("37") { card }
+      get :show, :id => "37"
+      assigns(:card).should eq(card)
+    end
+  end
+  
+  describe "GET edit" do
+    it "assigns requested Card to @card" do
+      card = stub_model(Card)
+      Card.stub(:find).with("37") { card }
+      get :edit, :id => "37"
+      assigns(:card).should eq(card)
+    end
+  end
+  
+  describe "PUT update" do
+    let(:card) {stub_model(Card, :id => "37")}
+    before {Card.stub(:find).with("37") { card }}
+
+    it "updates the record" do
+      card.should_receive(:update_attributes).with(
+        hash_including("body" => "Update me"))
+      put :update, :id => "37", :card => {"body" => "Update me"}
+    end
+
+    it "redirects to the updated card" do
+      put :update, :id => "37"
+      response.should redirect_to(card_path(card))
+    end
+  end
 end
