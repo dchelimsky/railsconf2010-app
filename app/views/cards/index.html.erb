@@ -1,8 +1,23 @@
-<% @swimlanes.each do |swimlane| -%>
-  <ul id="swimlane-<%= swimlane.id %>" class="cards">
-    <% swimlane.cards.each do |card| -%>
-      <li><%= card.title %></li>
-    <% end -%>
-  </ul>
-<% end -%>
-  
+<table id="swimlanes">
+  <thead>
+    <tr>
+      <% @swimlanes.each do |swimlane| -%>
+        <th><%= swimlane.name %></th>
+      <% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <% @swimlanes.each do |swimlane| -%>
+        <td>
+          <ul id="swimlane-<%= swimlane.id %>" class="cards">
+            <% swimlane.cards.each do |card| -%>
+              <li><%= card.title %></li>
+            <% end -%>
+          </ul>
+        </td>
+      <% end -%>
+    </tr>
+  </tbody>
+</table>
