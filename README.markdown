@@ -11,7 +11,7 @@ different phases in the evolution of the example app.
 * git
 * rvm 0.1.38 (if you're on *nix)
 * pik (if you're on windows)
-* ruby 1.8.7-p249 
+* ruby 1.8.7
 
 ### Get started
 
