@@ -6,11 +6,17 @@ Given /^the following swimlanes:$/ do |swimlanes|
   Swimlane.create! swimlanes.hashes
 end
 
-When /^I move "([^"]*)" to the "([^"]*)" swimlane$/ do |card_title, swimlane|
+When /^I move "([^"]*)" to the "([^"]*)" swimlane$/ do |card_title, swimlane_name|
   visit cards_path
-  within(card_div(card_title)) do
-    select swimlane, :from => "Move to"
-    click_button "Move"
+  if(@javascript)
+    card_widget = page.driver.find(card_widget(card_title)).first
+    swimlane_widget = page.driver.find(swimlane_widget(swimlane_name)).first
+    card_widget.drag_to(swimlane_widget)
+  else
+    within(card_widget(card_title, :css)) do
+      select swimlane_name, :from => "Move to"
+      click_button "Move"
+    end
   end
 end
 
@@ -39,10 +45,19 @@ Then /^I should see the following cards in their respective lanes:$/ do |board|
 end
 
 module SwimlaneHelpers
-  def card_div(card_title)
+  def card_widget(card_title, selector_type = :xpath)
     card = Card.find_by_title(card_title)
-    "#card-#{card.id}"
+    selector_type == :xpath ? "//li[@id='card-#{card.id}']" : "#card-#{card.id}"
   end
+
+  def swimlane_widget(swimlane_name)
+    swimlane = Swimlane.find_by_name(swimlane_name)
+    "//ul[@id='swimlane-#{swimlane.id}']"
+  end
+end
+
+Before('@javascript') do
+  @javascript = true
 end
 
 World(SwimlaneHelpers)

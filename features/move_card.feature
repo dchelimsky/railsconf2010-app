@@ -3,6 +3,7 @@ Feature: Move card
   As a team member
   I want to move cards from one swimlane to another
   
+  @culerity
   Scenario: move from backlog to in progress
     Given the following swimlanes:
       | name        | default | position |
