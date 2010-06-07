@@ -11,7 +11,7 @@
     <tr>
       <% @swimlanes.each do |swimlane| -%>
         <td>
-          <ul id="swimlane-<%= swimlane.id %>" class="cards">
+          <ul id="swimlane-<%= swimlane.id %>" class="swimlane">
             <% swimlane.cards.each do |card| -%>
               <li id="card-<%= card.id %>">
                 <h3><%= card.title %></h3>

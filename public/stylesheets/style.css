@@ -1,0 +1,14 @@
+ul.swimlane { 
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+  margin-bottom: 10px;
+  min-height: 400px;
+}
+
+ul.swimlane li { 
+  margin: 5px; 
+  padding: 5px;
+  border: 1px dotted #222222; 
+  background: #BBBBBB; 
+}
