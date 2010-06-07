@@ -13,7 +13,16 @@
         <td>
           <ul id="swimlane-<%= swimlane.id %>" class="cards">
             <% swimlane.cards.each do |card| -%>
-              <li><%= card.title %></li>
+              <li id="card-<%= card.id %>">
+                <h3><%= card.title %></h3>
+                <div class="move-widget">
+                  <%= form_for(card, :url => card_moves_path(card), :html => { :method => :post}) do |f| %>
+                    <%= f.label :swimlane_id, "Move to" %>
+                    <%= f.select :swimlane_id, Swimlane.all.collect {|p| [ p.name, p.id ] } %>
+                    <%= f.submit "Move" %>
+                  <% end %>
+                </div>
+              </li>
             <% end -%>
           </ul>
         </td>
